@@ -35,21 +35,10 @@ const Show = () => {
   const [searchInput, setSearchInput] = useState(
     searchParams.get("query") || ""
   );
-  // const [query, setQuery] = useState(searchParams.get("query") || "");
+
   const query = searchParams.get("query") || "";
 
   const limit = 1;
-
-  // const goToPage = (newPage: number) => {
-  //   const params = new URLSearchParams();
-  //   params.set("page", newPage.toString());
-  //   if (query) params.set("query", query);
-  //   router.push(`?${params.toString()}`);
-  // };
-
-  // const debouncedSearch = useDebounce((value: string) => {
-  //   goToPage(1, value.trim());
-  // }, 500);
 
   const debouncedSearch = useDebounce(async (value: string) => {
     const res = await fetch(`/api/submit?limit=5&query=${value}`);
@@ -64,40 +53,6 @@ const Show = () => {
     router.push(`?${params.toString()}`);
     setSuggestionResults([]); // clear suggestions after click
   };
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const res = await fetch(`/api/submit?page=${page}&limit=${limit}`);
-  //     const data = await res.json();
-  //     setEmails(data.data);
-  //     setTotal(data.total);
-  //   };
-  //   fetchData();
-  // }, [page]);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const res = await fetch(
-  //       `/api/submit?page=${page}&limit=${limit}&query=${query}`
-  //     );
-  //     const data = await res.json();
-  //     setEmails(data.data);
-  //     setTotal(data.total);
-  //   };
-  //   fetchData();
-  // }, [page, query]);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const res = await fetch(
-  //       `/api/submit?page=${page}&limit=${limit}&query=${query}`
-  //     );
-  //     const data = await res.json();
-  //     setEmails(data.data);
-  //     setTotal(data.total);
-  //   };
-  //   fetchData();
-  // }, [page, query]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -221,22 +176,6 @@ const Show = () => {
         >
           Previous
         </button>
-        {/* <span>
-          Page {page} of {totalPages}
-        </span> */}
-        {/* {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
-          <button
-            key={pageNum}
-            onClick={() => goToPage(pageNum)}
-            className={`px-3 py-1 rounded ${
-              pageNum === page
-                ? "bg-blue-700 text-white"
-                : "bg-gray-200 text-black hover:bg-gray-300"
-            }`}
-          >
-            {pageNum}
-          </button>
-        ))} */}
         {renderPageNumbers()}
         <button
           disabled={page === totalPages}
