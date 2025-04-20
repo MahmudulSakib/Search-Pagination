@@ -66,14 +66,6 @@ const Show = () => {
   };
 
   // useEffect(() => {
-  //   setPage(parseInt(searchParams.get("page") || "1"));
-  // }, [searchParams]);
-
-  // useEffect(() => {
-  //   setPage(pageFromParams);
-  // }, [pageFromParams]);
-
-  // useEffect(() => {
   //   const fetchData = async () => {
   //     const res = await fetch(`/api/submit?page=${page}&limit=${limit}`);
   //     const data = await res.json();
@@ -107,14 +99,6 @@ const Show = () => {
   //   fetchData();
   // }, [page, query]);
 
-  // const debouncedSearch = useMemo(
-  //   () =>
-  //     debounce((value: string) => {
-  //       goToPage(1, value.trim());
-  //     }, 500), // 500ms debounce delay
-  //   []
-  // );
-
   useEffect(() => {
     const fetchData = async () => {
       const currentPage = parseInt(searchParams.get("page") || "1");
@@ -131,12 +115,6 @@ const Show = () => {
     };
     fetchData();
   }, [searchParams]);
-
-  // useEffect(() => {
-  //   return () => {
-  //     debouncedSearch.cancel(); // cancel on unmount
-  //   };
-  // }, [debouncedSearch]);
 
   const totalPages = Math.ceil(total / limit);
   const renderPageNumbers = () => {
