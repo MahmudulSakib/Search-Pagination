@@ -117,6 +117,7 @@ const Show = () => {
   }, [searchParams]);
 
   const totalPages = Math.ceil(total / limit);
+
   const renderPageNumbers = () => {
     const pages: (number | string)[] = [];
 
@@ -215,7 +216,6 @@ const Show = () => {
       <div className="mt-4 flex gap-2">
         <button
           disabled={page === 1}
-          //   onClick={() => setPage((p) => Math.max(1, p - 1))}
           onClick={() => goToPage(page - 1)}
           className="bg-blue-500 text-white px-3 py-1 rounded disabled:opacity-50"
         >
